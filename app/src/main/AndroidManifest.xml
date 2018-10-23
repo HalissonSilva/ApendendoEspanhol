@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.halisson.apendendoespanhol">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/iconelogo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/iconelogo"
+        android:supportsRtl="true"
+        android:theme="@style/AppCompat.TelaCheia">
+        <activity
+            android:name=".com.aprendendoespanhol.TelaSplash"
+            android:theme="@style/AppCompat.TelaCheia">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".com.aprendendoespanhol.PrimeiraTela"
+            android:theme="@style/AppCompat.TelaCheia" />
+        <activity
+            android:name=".com.aprendendoespanhol.TelaHistorias"
+            android:theme="@style/AppCompat.TelaCheia" />
+        <activity
+            android:name=".com.aprendendoespanhol.Quiz"
+            android:theme="@style/AppCompat.TelaCheia" />
+        <activity
+            android:name=".com.aprendendoespanhol.Resposta"
+            android:theme="@style/AppCompat.TelaCheia" />
+        <activity
+            android:name=".com.aprendendoespanhol.TelaCreditos"
+            android:theme="@style/AppCompat.TelaCheia" />
+        <activity android:name=".com.aprendendoespanhol.TelaJogador" />
+        <activity android:name=".com.aprendendoespanhol.NovoJogador" />
+        <activity android:name=".com.aprendendoespanhol.JogadorLayout" />
+        <activity
+            android:name=".com.aprendendoespanhol.MainActivity"
+            android:label="@string/title_activity_tela_do_jogador"
+            android:theme="@style/AppCompat.TelaCheia" />
+        <activity
+            android:name=".com.aprendendoespanhol.TelaRanking"
+            android:label="@string/title_activity_tela_ranking"
+            android:theme="@style/AppCompat.TelaCheia" />
+        <activity android:name=".com.aprendendoespanhol.LayoutJogadorCompleto" />
+        <activity android:name=".com.aprendendoespanhol.Desempenho"></activity>
+    </application>
+
+</manifest>

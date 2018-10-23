@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nomeJogador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nome"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="codigo"
+        android:visibility="invisible"
+        android:id="@+id/idJogador"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="nivel"
+        android:visibility="invisible"
+        android:id="@+id/nivelJogador"/>
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="50dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/pontosJogador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pontos"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

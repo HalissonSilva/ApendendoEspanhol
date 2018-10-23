@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FABULOSO</string>
+    <string name="txtExplicativo">O jogo é composto de 10 perguntas sobre a história em espanhol do patinho feio</string>
+    <string name="btnJogarString">Jogar</string>
+    <string name="btnJogarNovamenteString">Jogar Novamente</string>
+    <string name="btnSairDoJogoString">Sair</string>
+    <string name="acertou">Felicitación </string>
+    <string name="title_activity_tela_creditos">TelaCreditos</string>
+
+    <string name="msg_camposobrigatorios">Campos Obrigatórios</string>
+    <string name="msg_selecioneumjogador">Selecione um jogador</string>
+    <string name="title_activity_tela_do_jogador">TelaDoJogador</string>
+    <string name="title_activity_tela_ranking">TelaRanking</string>
+
+</resources>
