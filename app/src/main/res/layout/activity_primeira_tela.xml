@@ -1,33 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.example.halisson.apendendoespanhol.com.aprendendoespanhol.PrimeiraTela">
+    tools:context="com.example.halisson.apendendoespanhol.com.aprendendoespanhol.PrimeiraTela"
+    android:orientation="vertical">
 
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/logo" />
 
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         tools:layout_editor_absoluteX="42dp"
         tools:layout_editor_absoluteY="130dp" />
 
-    <Button
-        android:id="@+id/bntIniciarJogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="19dp"
-        android:background="@color/colorPrimaryDark"
-        android:onClick="bntIniciarJogo"
-        android:text="Jogar"
-        android:textColor="@android:color/background_light"
-        tools:layout_editor_absoluteX="241dp"
-        tools:layout_editor_absoluteY="446dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/btnPrimeiraTelaJogar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="0dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="0"
+            android:background="@drawable/buttongreen"
+            android:onClick="bntIniciarJogo"
+            android:text="Jogar"
+            android:textColor="@android:color/background_light"
+            tools:layout_editor_absoluteX="241dp"
+            tools:layout_editor_absoluteY="446dp" />
+
+        <Button
+            android:id="@+id/btnPrimeiraTelaVoltar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@drawable/buttonred"
+            android:text="Voltar" />
+    </LinearLayout>
+
+</LinearLayout>

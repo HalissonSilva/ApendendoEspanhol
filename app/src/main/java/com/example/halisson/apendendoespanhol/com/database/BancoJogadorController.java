@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 public class BancoJogadorController {
     private SQLiteDatabase db_jogadores;
     private BancoJogador banco;
-    private String campos[] = { "_id", "nome", "pontos", "nivel" };
+    private String campos[] = { "_id", "nome", "pontos", "progresso"};
     private Cursor cursor;
    // private static String ORDER_BY = pontos+"DESC";
 
@@ -19,21 +19,18 @@ public class BancoJogadorController {
         banco = new BancoJogador(context);
     }
 
-    public String inserir(String nome, String pontos, String nivel){
+    public long inserir(String nome, int pontos, int nivel){
         ContentValues valores;
         long resultado;
         db_jogadores = banco.getWritableDatabase();
         valores = new ContentValues();
         valores.put("nome", nome);
         valores.put("pontos", pontos);
-        valores.put("nivel", nivel);
+        valores.put("progresso", nivel);
         resultado = db_jogadores.insertOrThrow("jogador",null,valores);
         db_jogadores.close();
 
-        if(resultado == -1)
-            return "Erro ao Iserir Registro!";
-        else
-            return "Registro inserido!";
+        return resultado;
     }
 
     public Cursor buscarTodos(){
@@ -44,9 +41,19 @@ public class BancoJogadorController {
         }
         return cursor;
     }
-    public Cursor buscarPorId(int id){
+
+    public Cursor buscarTodosRanking(){
+        db_jogadores = banco.getReadableDatabase();
+        cursor = db_jogadores.query("jogador",campos,null,null,null,null,"pontos DESC");
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        return cursor;
+    }
+
+    public Cursor buscarPorId(String id){
         db_jogadores=banco.getReadableDatabase();
-        cursor = db_jogadores.query("jogador", campos," = ?", null, null, null, null, null);
+        cursor = db_jogadores.query("jogador", campos,"_id = ?", new String[]{id}, null, null, null, null);
         if (cursor!=null){
             cursor.moveToFirst();
         }
@@ -54,16 +61,15 @@ public class BancoJogadorController {
         return cursor;
     }
 
-    public void alterar(int id, String nome, String pontos, String nivel){
+    public void alterar(String id, int pontos, int nivel){
         ContentValues valores;
         db_jogadores = banco.getWritableDatabase();
 
         valores = new ContentValues();
-        valores.put("nome", nome);
         valores.put("pontos", pontos);
-        valores.put("nivel", nivel);
+        valores.put("progresso", nivel);
 
-        db_jogadores.update("jogador", valores, " = ?", new String[]{String.valueOf(id)});
+        db_jogadores.update("jogador", valores, "_id = ?", new String[]{String.valueOf(id)});
     }
 
 }

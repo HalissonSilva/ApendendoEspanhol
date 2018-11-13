@@ -45,7 +45,8 @@
             android:label="@string/title_activity_tela_ranking"
             android:theme="@style/AppCompat.TelaCheia" />
         <activity android:name=".com.aprendendoespanhol.LayoutJogadorCompleto" />
-        <activity android:name=".com.aprendendoespanhol.Desempenho"></activity>
+        <activity android:name=".com.aprendendoespanhol.Desempenho" />
+        <activity android:name=".com.aprendendoespanhol.FimDeNivelActivity"></activity>
     </application>
 
 </manifest>

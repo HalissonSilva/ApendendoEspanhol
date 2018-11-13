@@ -11,7 +11,7 @@ public class Pergunta {
 
     private String pergunta;
     private int resposta;
-    private List<String> alternativas = new ArrayList<>();
+    private List<String> alternativas = new ArrayList<String>();
     private int imgPergunta;
 
     public Pergunta(int imgPergunta, String pergunta, int resposta, String... alternativas){

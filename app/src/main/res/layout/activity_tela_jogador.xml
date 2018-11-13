@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context="com.example.halisson.apendendoespanhol.com.aprendendoespanhol.TelaJogador">
 
@@ -12,57 +12,32 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:srcCompat="@drawable/iconelogo" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/edtPontos"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="pontos"
-            android:visibility="visible" />
-
-        <EditText
-            android:id="@+id/edtNivel"
-            android:layout_width="250dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:hint="nivel"
-            android:visibility="visible" />
-
-
-    </LinearLayout>
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/logo" />
 
 
     <LinearLayout
+        android:id="@+id/llMensagem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/listjogadores"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:visibility="visible">
 
-        <EditText
-            android:id="@+id/edtNome"
-            android:layout_width="250dp"
+        <TextView
+            android:id="@+id/txtMensagem"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:enabled="false"
-            android:hint="Nome do Jogador"
-            android:inputType="textPersonName"
-            android:textColor="@android:color/black"
-            android:textColorLink="@android:color/black" />
-
-        <Button
-            android:id="@+id/btnBuscar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Buscar"
-            android:visibility="visible" />
+            android:text="Vamos jogar "
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="24sp" />
 
 
     </LinearLayout>
@@ -71,33 +46,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <Button
             android:id="@+id/btnJogar"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/buttongreen"
             android:enabled="false"
             android:onClick="Jogar"
-            android:text="Jogar" />
+            android:text="Continuar" />
 
         <Button
             android:id="@+id/btnNovoJogador"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@android:color/holo_blue_dark"
+            android:background="@drawable/buttonshape"
             android:onClick="NovoJogador"
-            android:text="Novo Jogador" />
+            android:text="Novo Jogo" />
     </LinearLayout>
 
     <ListView
         android:id="@+id/listJogadores"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp" />
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/list"
+        android:padding="20dp">
+
+    </ListView>
 
 
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.halisson.apendendoespanhol.R;
 import com.example.halisson.apendendoespanhol.com.database.BancoJogadorController;
+import com.example.halisson.apendendoespanhol.com.database.BancoPerguntas;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,37 +26,13 @@ import java.util.List;
 
 public class Quiz extends AppCompatActivity {
 
-    private Cursor cursor;
-    private BancoJogadorController crud;
-    private String codigo, nivel;
-
-
-
-    static int pontos, erros, resposta, objetivo;
-    TextView txtPergunta,txtNome, txtPontos;
+    private int resposta;
+    private boolean eleAcertou, jaRespondeu = false;
+    TextView txtPergunta, txtInfo;
     RadioGroup radioRespostas;
     RadioButton radioResposta1, radioResposta2, radioResposta3, radioResposta4;
     ImageView imgPergunta;
-    Button btnResponder;
-    static List<Pergunta> perguntas;
-
-
-    private void carregarPergunta() {
-        while (perguntas.size() > 0) {
-            Pergunta p = perguntas.remove(0);
-            txtPergunta.setText(p.getPergunta());
-            imgPergunta.setImageResource(p.getImgPergunta());
-            List<String> alternativa = p.getAlternativas();
-            radioResposta1.setText(alternativa.get(0));
-            radioResposta2.setText(alternativa.get(1));
-            radioResposta3.setText(alternativa.get(2));
-            radioResposta4.setText(alternativa.get(3));
-            resposta = p.getResposta();
-            radioRespostas.setSelected(false);
-
-            finish();
-        }
-    }
+    Button btnResponder, btnVoltar;
 
 
     @Override
@@ -62,14 +40,8 @@ public class Quiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        codigo = this.getIntent().getStringExtra("codigo");
-        crud = new BancoJogadorController(getBaseContext());
-
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        pontos = 0;
-        erros = 0;
-        resposta = R.id.radio_respostas1;
+        Log.e("nivel", BancoPerguntas.NIVEL_SELECIONADO);
+        Log.e("indicePergunta", String.valueOf(BancoPerguntas.INDICE_PERGUNTA));
 
         imgPergunta = (ImageView) findViewById(R.id.imgPergunta);
         txtPergunta = (TextView) findViewById(R.id.txt_pergunta);
@@ -79,13 +51,9 @@ public class Quiz extends AppCompatActivity {
         radioResposta3 = (RadioButton) findViewById(R.id.radio_respostas3);
         radioResposta4 = (RadioButton) findViewById(R.id.radio_respostas4);
         btnResponder = (Button) findViewById(R.id.btnResponder);
+        btnVoltar = (Button) findViewById(R.id.btnVoltar);
 
-        txtNome = (TextView)findViewById(R.id.txt_nome);
-        txtPontos = (TextView)findViewById(R.id.txt_pontos);
-
-
-        //txtNome.setText(cursor.getString(cursor.getColumnIndexOrThrow("nome")));
-        //txtPontos.setText("Pontuação total: " + Integer.toString(MainActivity.pontuacaoTotal));
+        txtInfo = (TextView) findViewById(R.id.txtInfo);
 
         btnResponder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,11 +64,21 @@ public class Quiz extends AppCompatActivity {
                     RadioButton rb = (RadioButton) findViewById(radioRespostas.getCheckedRadioButtonId());
                     Intent intent = new Intent(getApplicationContext(), Resposta.class);
                     if (radioRespostas.getCheckedRadioButtonId() == resposta) {
-                        intent.putExtra("acertou", true);
-                        pontos++;
-                    } else
-                        intent.putExtra("acertou", false);
-                    intent.putExtra("pontos", pontos);
+                        eleAcertou = true;
+                        intent.putExtra("acertou", eleAcertou);
+                        if(!jaRespondeu) {
+                            BancoPerguntas.PONTOS_NIVEL++;
+                        }
+                    } else {
+                        eleAcertou = false;
+                        intent.putExtra("acertou", eleAcertou);
+                        if(!jaRespondeu) {
+                            BancoPerguntas.ERROS_NIVEL++;
+                        }
+                        jaRespondeu = true;
+                    }
+
+                    // INCREMENTA O INDICE DA QUESTAO ATUAL
                     startActivity(intent);
 
                     radioRespostas.clearCheck();
@@ -119,23 +97,64 @@ public class Quiz extends AppCompatActivity {
             }
 
         });
-        carregarPergunta();
+
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        txtInfo.setText("Nivel " + BancoPerguntas.NIVEL_SELECIONADO + " - Questão " + (BancoPerguntas.INDICE_PERGUNTA + 1));
+
+        carregarNivel(BancoPerguntas.NIVEL_SELECIONADO, BancoPerguntas.INDICE_PERGUNTA);
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-            if (pontos == 2) {
-                Toast.makeText(getApplicationContext(), "Nível 2 liberado!", Toast.LENGTH_LONG).show();
-                MainActivity.btnNivel2.setVisibility(View.VISIBLE);
-                nivel = "2";
-            }else if(pontos == 4){
-                Toast.makeText(getApplicationContext(), "Nível 3 liberado!", Toast.LENGTH_LONG).show();
-                MainActivity.btnNivel3.setVisibility(View.VISIBLE);
-                nivel = "3";
-            }
+        // VERIFICA SE O USUARIO ACERTOU A PERGUNTA. SE NÃO, NÃO VAI PARA A PROXIMA PERGUNTA
+        if (eleAcertou) {
+            BancoPerguntas.INDICE_PERGUNTA++;
+            jaRespondeu = false;
+        }
+        Log.e("indicePergunta", String.valueOf(BancoPerguntas.INDICE_PERGUNTA));
+        // VERIFICA SE AS PERGUNTAS DO NÍVEL ACABARAM
+        if (BancoPerguntas.INDICE_PERGUNTA == BancoPerguntas.NUMERO_PERGUNTAS) {
+            Intent intent = new Intent(Quiz.this, Desempenho.class);
+            startActivity(intent);
+            finish();
+        } else {
+            carregarNivel(BancoPerguntas.NIVEL_SELECIONADO, BancoPerguntas.INDICE_PERGUNTA);
+        }
+        txtInfo.setText("Nivel " + BancoPerguntas.NIVEL_SELECIONADO + " - Questão " + (BancoPerguntas.INDICE_PERGUNTA + 1));
 
-        carregarPergunta();
+    }
+
+    private void carregarPergunta(Pergunta p) {
+        txtPergunta.setText(p.getPergunta());
+        imgPergunta.setImageResource(p.getImgPergunta());
+        List<String> alternativa = p.getAlternativas();
+        radioResposta1.setText(alternativa.get(0));
+        radioResposta2.setText(alternativa.get(1));
+        radioResposta3.setText(alternativa.get(2));
+        radioResposta4.setText(alternativa.get(3));
+        resposta = p.getResposta();
+        radioRespostas.setSelected(false);
+    }
+
+    private void carregarNivel(String nivel, int indicePergunta) {
+        switch (nivel) {
+            case "1":
+                carregarPergunta(BancoPerguntas.NIVEL1.get(indicePergunta));
+                break;
+            case "2":
+                carregarPergunta(BancoPerguntas.NIVEL2.get(indicePergunta));
+                break;
+            case "3":
+                carregarPergunta(BancoPerguntas.NIVEL3.get(indicePergunta));
+                break;
+        }
     }
 
 }

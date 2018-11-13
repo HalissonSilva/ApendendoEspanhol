@@ -15,30 +15,18 @@ import android.widget.Toast;
 
 import com.example.halisson.apendendoespanhol.R;
 import com.example.halisson.apendendoespanhol.com.database.BancoJogadorController;
+import com.example.halisson.apendendoespanhol.com.database.BancoPerguntas;
 
 public class Resposta extends AppCompatActivity {
 
     ImageView imgResposta;
     TextView txtResposta;
     MediaPlayer efeitoSonoro;
-    private BancoJogadorController crud;
-    private String codigo;
-    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resposta);
-
-
-        //final EditText nome = (EditText) findViewById(R.id.edtNome);
-        //final EditText ponto = (EditText)findViewById(R.id.edtPonto);
-
-        codigo = this.getIntent().getStringExtra("codigo");
-        crud = new BancoJogadorController(getBaseContext());
-
-
-        BancoJogadorController crud = new BancoJogadorController(getBaseContext());
 
         imgResposta = (ImageView) findViewById(R.id.img_resposta);
         txtResposta = (TextView) findViewById(R.id.txt_resposta);
@@ -49,14 +37,11 @@ public class Resposta extends AppCompatActivity {
         if(resposta){
             imgResposta.setImageResource(R.drawable.corect);
             txtResposta.setText("Acertou");
-            Quiz.pontos++;
-            MainActivity.pontuacaoTotal++;
             efeitoSonoro = MediaPlayer.create(getApplicationContext(), R.raw.correct);
             efeitoSonoro.start();
         }else{
             imgResposta.setImageResource(R.drawable.incorrect);
             txtResposta.setText("Errou!");
-            Quiz.erros++;
             efeitoSonoro = MediaPlayer.create(getApplicationContext(), R.raw.wrong);
             efeitoSonoro.start();
         }

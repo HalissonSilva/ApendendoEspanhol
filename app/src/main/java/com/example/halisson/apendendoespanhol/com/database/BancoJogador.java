@@ -17,26 +17,23 @@ public class BancoJogador extends SQLiteOpenHelper {
 
 
     public BancoJogador(Context context) {
-
-        super(context, "db_jogadores", null, 1);
+        super(context, "db_jogadores", null, 5);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
-
-        String sql = "CREATE TABLE jogador (_id integer primary key autoincrement, nome text, pontos text, nivel text)";
-
+        String sql = "CREATE TABLE jogador (_id integer primary key autoincrement, nome text, pontos integer, progresso integer)";
         db.execSQL(sql);
+        String sqlNivel = "CREATE TABLE nivel (_idjogador integer, level text, pontos integer)";
+        db.execSQL(sqlNivel);
     }
 
     @Override
-
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-
         db.execSQL("DROP TABLE IF EXISTS jogador");
+        db.execSQL("DROP TABLE IF EXISTS nivel");
         onCreate(db);
 
     }
 
-    }
+}

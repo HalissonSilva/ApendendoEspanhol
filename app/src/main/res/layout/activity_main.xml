@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
@@ -17,8 +17,8 @@
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/iconelogo" />
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/logo" />
 
         <TextView
             android:layout_width="match_parent"
@@ -34,33 +34,50 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <Button
             android:id="@+id/btnNivel1"
-            android:onClick="Nivel1"
-            android:layout_width="wrap_content"
+
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nível 1" />
+            android:layout_marginBottom="20dp"
+
+            android:background="@drawable/buttonshape"
+            android:text="NÍVEL 1"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
 
         <Button
             android:id="@+id/btnNivel2"
-            android:layout_width="wrap_content"
+
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal|center"
-            android:onClick="Nivel2"
-            android:text="Nível 2" />
+            android:layout_marginBottom="20dp"
+
+            android:background="@drawable/buttonshape"
+            android:enabled="false"
+            android:text="NÍVEL 2"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
 
         <Button
             android:id="@+id/btnNivel3"
-            android:layout_width="wrap_content"
+
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal|center"
-            android:onClick="Nivel3"
-            android:text="Nível 3" />
+            android:background="@drawable/buttonshape"
+
+            android:enabled="false"
+            android:text="NÍVEL 3"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -71,20 +88,26 @@
 
         <Button
             android:id="@+id/btnRanking"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/buttonroxo"
             android:onClick="Ranking"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Ranking" />
 
         <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sobre" />
+            android:id="@+id/btnAjuda"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/buttongreen"
+            android:text="Ajuda" />
+
         <Button
             android:id="@+id/btnSair"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sair" />
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/buttonred"
+            android:text="Voltar" />
     </LinearLayout>
 </LinearLayout>

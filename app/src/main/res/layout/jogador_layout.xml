@@ -1,41 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical"
+    android:padding="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Nome"
-        android:id="@+id/nomeJogador"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Pontos"
-        android:visibility="invisible"
-        android:id="@+id/pontosJogador"/>
+        <TextView
+            android:id="@+id/txtLtIdJogador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="codigo"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:visibility="invisible" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="codigo"
-        android:id="@+id/idJogador"/>
+        <TextView
+            android:id="@+id/txtLtNomeJogador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nome"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="nivel"
-        android:visibility="invisible"
-        android:id="@+id/nivelJogador"/>
-
-
+    </RelativeLayout>
 
 
 </LinearLayout>

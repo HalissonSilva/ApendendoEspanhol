@@ -26,29 +26,36 @@ public class TelaRanking extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_ranking);
 
-
-
         btnVoltar = (Button)findViewById(R.id.btnVoltar);
 
         BancoJogadorController crud = new BancoJogadorController(getBaseContext());
-        final Cursor cursor = crud.buscarTodos();
+        final Cursor cursor = crud.buscarTodosRanking();
 
-        String[] nomeCampos = new String[]{"_id", "nome", "pontos","nivel"};
+        String[] nomeCampos = new String[]{"_id", "nome", "pontos"};
 
-        int[] idView = new int[]{R.id.idJogador, R.id.nomeJogador, R.id.pontosJogador, R.id.nivelJogador};
+        int[] idView = new int[]{R.id.txtRankingPosicao, R.id.txtRankingNome, R.id.txtRankingPontos};
 
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(getBaseContext(),
                 R.layout.layout_jogador_completo, cursor, nomeCampos, idView);
 
         listaRanking = (ListView)findViewById(R.id.listaRanking);
-        listaRanking.setAdapter(adaptador);
+
+        AdapterRankingPersonalizado adapterRankingPersonalizado =
+                new AdapterRankingPersonalizado(TelaRanking.this, cursor, 0);
+
+        listaRanking.setAdapter(adapterRankingPersonalizado);
 
     }
 
     public void Voltar(View v){
+       onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
         Intent intent = new Intent(TelaRanking.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
-
 }

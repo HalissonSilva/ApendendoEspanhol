@@ -11,5 +11,12 @@
     <string name="msg_selecioneumjogador">Selecione um jogador</string>
     <string name="title_activity_tela_do_jogador">TelaDoJogador</string>
     <string name="title_activity_tela_ranking">TelaRanking</string>
+    <string name="instruções">
+        1. Selecione o nível disponível\n2. Assista a história que será exibida\n3. Responda o quiz sobre a fábula\n4. Ao acertar 70% das questões você avança de nível
+    </string>
+    <string name="creditos">
+        O FABULOSO foi desenvolvido por alunos, com o auxílio de professores do Instituto Federal do Maranhão -
+        Campus Caxias e tem como objetivo auxiliar o ensino da Língua Espanhola à crianças do ensino fundamental.
+    </string>
 
 </resources>

@@ -7,7 +7,7 @@ package com.example.halisson.apendendoespanhol.com.aprendendoespanhol;
 public class Sessao {
 
     public static String NOME_JOGADOR;
-    public static String NIVEL;
     public static String PONTOS;
-    public static String CODIGO;
+    public static String ID;
+    public static int PROGRESSO;
 }
